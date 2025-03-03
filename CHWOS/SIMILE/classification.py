@@ -1,5 +1,5 @@
-import numpy as np # type: ignore
-from sklearn.cluster import KMeans # type: ignore
+import numpy as np
+from sklearn.cluster import KMeans
 from CHWOS.utils.bags import generate_train_test_validation_bags
 from CHWOS.utils.timer import timer_decorator
 from CHWOS.utils.log import get_logger
@@ -87,7 +87,7 @@ def classify_and_cut(prediction_dict, dataset, splittag, iteration, found_cutoff
     cutoffs = {}
     if SYM_C:
         cutoffs = classify_symc(dataset, splittag, prediction_dict, cutoffs=found_cutoffs)
-        if cutoffs == False:
+        if not cutoffs:
             was_classified = False 
     else:
         classify_miles(dataset, splittag, prediction_dict)
@@ -96,7 +96,7 @@ def classify_and_cut(prediction_dict, dataset, splittag, iteration, found_cutoff
     if AE and was_classified:
         was_cut = cut(dataset, splittag, cut_sym=SYM_C)
 
-    #Allow for any dataset specific post classify and cut functions
+    #Allow for any dataset specific post classify and cut function
     if 'classify_and_cut' in dataset.post_step:
         dataset.post_step['classify_and_cut'](iteration, splittag)
 

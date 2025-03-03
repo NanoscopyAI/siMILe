@@ -12,8 +12,8 @@ def train(sigma2, train_bags, train_bag_labels, bagsize, C):
     pipeline = [('scale', StandarizerBagsList())]
 
     trainer.prepare(model, preprocess_pipeline=pipeline)
-    trainer.fit(X_train=train_bags \
-                ,y_train=train_bag_labels, \
+    trainer.fit(X_train=train_bags,\
+                y_train=train_bag_labels, \
                 verbose=1)
 
     return trainer

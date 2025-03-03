@@ -83,5 +83,5 @@ class EXP_CONFIG():
             try:
                 if not os.path.exists(newpath):
                     os.makedirs(newpath)
-            except:
+            except Exception as _:
                 pass

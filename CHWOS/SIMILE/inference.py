@@ -1,5 +1,6 @@
-import numpy as np # type: ignore
+import numpy as np 
 from CHWOS.utils.log import get_logger
+
 logger = get_logger(__name__)
 
 def predict_bag(trainer, bags):
@@ -36,21 +37,8 @@ def combine_accuracy(accs, weights):
 
 
 def predict_instances(trainer, bags, iter_predictions, miles_predict=False):
-    #num_cpus = 1
-    #bags_split = np.array_split(bags, num_cpus)
-    #with Pool(num_cpus) as pool:
-    #    args_list = [(trainer, bag, miles_predict) for bag in bags_split]
-    #    p_out = pool.starmap(_predict_instances, args_list)    
-    #p = np.vstack(p_out)
     p = _predict_instances(trainer, bags, miles_predict=miles_predict)
     return aggregate_predictions([p], iter_predictions)
-
-
-#def predict_instances_pool(trainer, iter_predictions, bags, pool, split_count=3, miles_predict=False):
-#
-#    p = _predict_instances(trainer, bags, miles_predict=miles_predict)
-#    return aggregate_predictions([p], iter_predictions)
-
 
 
 def aggregate_predictions(preds, iter_predictions):
@@ -58,9 +46,6 @@ def aggregate_predictions(preds, iter_predictions):
         if type(p) != list and p.size != 0:
             for j in range(p.shape[0]):
                 iter_predictions[tuple(p[j,:-1])].append(p[j,-1:])
-    
-    #if return_model_val:
-        #    return acc, iter_predictions, predlabels
     return iter_predictions
 
 
@@ -69,11 +54,8 @@ def _predict_instances(trainer, bags, miles_predict=False):
     instance_predictions = []
 
     for i in range(len(bags)):
-        #if labels[i] != predlabels[i]: #AE ?
-        #    continue
         bag_to_predict = bags[i]
         
-        #Should fix to transform inside the MILES class
         in_pred = trainer.predict_instances([bag_to_predict], use_threshold=miles_predict)
 
         if len(in_pred) > 0:

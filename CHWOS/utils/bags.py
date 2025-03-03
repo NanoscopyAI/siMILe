@@ -34,9 +34,13 @@ def generate_train_test_validation_bags(features, A_TAG, B_TAG, split, bagsize, 
         return bags, bag_labels
     
     
-    pos_array = np.copy(features[A_TAG]); neg_array = np.copy(features[B_TAG])
-    np.random.shuffle(pos_array); np.random.shuffle(neg_array)
-    trainF = {}; validF = {}; testF = {}
+    pos_array = np.copy(features[A_TAG])
+    neg_array = np.copy(features[B_TAG])
+    np.random.shuffle(pos_array)
+    np.random.shuffle(neg_array)
+    trainF = {}
+    validF = {}
+    testF = {}
 
     if split[0] == 1:
         trainF[A_TAG] = pos_array
@@ -72,8 +76,6 @@ def reform_bags_and_labels(bags, labels):
         _bags = bags[labels == lbl]
         _bags = shuffle_bags(_bags)
         
-        #logger.info(f'@@@ {lbl} num_lbls {_bags.shape[0]}')
-        #logger.info(f'@@@ {lbl} num_lbls {_bags.shape[0]} bagsize {_bags.shape}')
         _new_lbls = [lbl] * _bags.shape[0]
         
         if len(_bags.shape) == 3:
@@ -86,13 +88,10 @@ def reform_bags_and_labels(bags, labels):
         
     new_bags = np.array(new_bags, dtype=object)
     new_labels = np.array(new_labels)
-    #logger.info(f'@@@ new_bags shape {new_bags.shape[0]},  {new_bags[0].shape}')
-    #logger.info(f'@@@ new_lbls shape {new_labels.shape[0]}')
     return new_bags, new_labels
         
 def shuffle_bags(bags):
     bagsize = bags[-1].shape[0]
-    #logger.info(f'@@@ BAGSIZE {bagsize}')
     all_instances = np.array([inst for bag in bags for inst in bag])
     np.random.shuffle(all_instances)
     bags = form_bags(all_instances, bagsize)

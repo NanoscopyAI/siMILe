@@ -1,5 +1,4 @@
 import copy
-import json
 import numpy as np # type: ignore
 
 from CHWOS.utils.save import save_data_numpy, get_savefile_name

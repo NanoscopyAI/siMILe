@@ -1,6 +1,5 @@
 import os
 import copy 
-import numpy as np # type: ignore
 import joblib
 
 from functools import partial
@@ -10,34 +9,8 @@ from CHWOS.SIMILE.svm import train
 from CHWOS.SIMILE.inference import predict_bag, predict_instances, compute_all_accuracy
 from CHWOS.utils.log import get_logger
 
-
 logger = get_logger(__name__)
 
-#############################################################################
-##
-##  Would like to split classify and cut, also fold mil library into this, 
-##  and seperate classes for AE, SYMC on off etc
-##
-###############################################################################
-
-#########################################################################################
-##
-##  NOT INCLUDED ARE RE-PREDICTIONS FOR VALID, SUCH AS FOR THE DEPRECATED HELA DATASET 
-##
-##        all_accs = [valid_acc]
-##        ex_bags, ex_labels = copy.deepcopy(dataset.valid_bags), copy.deepcopy(dataset.valid_bag_labels)
-##        for val_pred_i in range(exp_config.valid_pred_iters):
-##           ex_bags, ex_labels = reform_bags_and_labels(ex_bags, ex_labels)
-##            ex_pred_lbls_valid_bags = predict_bag(trainer, ex_bags)
-##            ex_valid_acc = compute_all_accuracy_partial(ex_pred_lbls_valid_bags, ex_labels)
-##           logger.info(f'Testing valid iter: {val_pred_i}, acc: {ex_valid_acc}')
-##            all_accs.append(ex_valid_acc)
-##
-##       for k in list(all_accs[0].keys())
-##        valid_acc[k] = np.mean([a[k] for a in all_accs])
-#########################################################################################
-        
-#Class for a given iteration of Simile
 class SimileIterModel:
     def __init__(self, iteration):
         self.iteration = iteration
@@ -55,7 +28,7 @@ class SimileIterModel:
         self.compute_all_accuracy_partial = partial(compute_all_accuracy, A_TAG=dataset.A_TAG, B_TAG=dataset.B_TAG, mil_labels=self.exp_config.mil_labels)
 
     def train(self):
-        assert self.dataset != None, 'No dataset has been set for iteration model'
+        assert self.dataset is not None, 'No dataset has been set for iteration model'
         
         self.trainer = train(sigma2=self.exp_config.sigma, train_bags=self.dataset.train_bags, \
                             train_bag_labels=self.dataset.train_bag_labels, \
@@ -63,7 +36,7 @@ class SimileIterModel:
     
     def predict_bags(self, train=True, valid=True, test=False):
         #Currently valid is used with test based on configuration, should be fixed
-        assert self.trainer != None, 'Iteration model not trained'
+        assert self.trainer is not None, 'Iteration model not trained'
         
         splitbags = [self.dataset.train_bags, self.dataset.valid_bags, self.dataset.test_bags]
         splitlbls = [self.dataset.train_bag_labels, self.dataset.valid_bag_labels, self.dataset.test_bag_labels]
@@ -87,7 +60,7 @@ class SimileIterModel:
             'valid': copy.deepcopy(self.dataset.clean_valid_iter_predictions)
             }
             
-        assert self.trainer != None, 'Iteration model not trained'
+        assert self.trainer is not None, 'Iteration model not trained'
         
         splitbags = [self.dataset.train_bags, self.dataset.valid_bags]
         results = {}
@@ -103,7 +76,7 @@ class SimileIterModel:
         return results
     
     def classify_and_cut(self, train=True, valid=True):
-        assert self.ip != None, 'Instance scores have not been predicted'
+        assert self.ip is not None, 'Instance scores have not been predicted'
         
         results = {}
         for split_str, split_flag in zip(['train', 'valid'], [train, valid]):
@@ -111,7 +84,7 @@ class SimileIterModel:
                 continue
             logger.info(f"Classifying and cutting {split_str}...")
             
-            assert not (split_str != 'train' and self.train_kmean_cutoffs == None), 'train cutoffs have not been found'
+            assert not (split_str != 'train' and self.train_kmean_cutoffs is None), 'train cutoffs have not been found'
                 
             
             was_cut, cutoffs = classify_and_cut(prediction_dict=self.ip[split_str], dataset=self.dataset, 
@@ -119,7 +92,7 @@ class SimileIterModel:
                                                 found_cutoffs=self.train_kmean_cutoffs)
             results[split_str] = {'was_cut': was_cut, 'cutoffs': cutoffs}
             
-            if split_str == 'train' and self.train_kmean_cutoffs == None:
+            if split_str == 'train' and self.train_kmean_cutoffs is None:
                 self.train_kmean_cutoffs = cutoffs
                 
         return results
@@ -129,7 +102,7 @@ class SimileIterModel:
         try:
             if not os.path.exists(path):
                 os.makedirs(path)
-        except:
+        except Exception as _:
             pass
         
         file_name = f'trainer_{self.iteration}.joblib'

@@ -14,9 +14,6 @@ def get_savefile_name(save_name_dict, include_date=True):
 
 
 def save_data_numpy(data, save_location, name, iteration=None):
-    #if iteration:
-    #    name += f'_ITERATION_{iteration}'
-        
     save_path = os.path.join(save_location, name + '.npy')
     logger.debug(f'Saving to: {save_path}')
     np.save(save_path, data)
