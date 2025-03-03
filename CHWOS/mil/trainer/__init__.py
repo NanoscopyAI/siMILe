@@ -1,0 +1,1 @@
+from CHWOS.mil.trainer.trainer import Trainer
