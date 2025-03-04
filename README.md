@@ -1,5 +1,5 @@
 # Walkthrough
-Short description of aim, task to be completed
+This tutorial walks you through how to setup and run SiMiLe-M.
 
 
 ## Table of Contents
