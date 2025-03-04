@@ -19,4 +19,3 @@ From: ubuntu
     conda install -y python=3.9  # Updated Python version
     conda install -y -c conda-forge pip 'numpy<2' scikit-learn configparser pandas joblib
     pip install tensorflow==2.7.1 protobuf==3.20.*
-
