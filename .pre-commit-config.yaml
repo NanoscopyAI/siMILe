@@ -1,0 +1,17 @@
+# init: pre-commit install; pre-commit autoupdate
+
+repos:
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.9.10
+  hooks:
+    - id: ruff
+      entry: ruff check
+      args: [ --fix ]
+    - id: ruff-format
+      entry: ruff format
+
+# - repo: https://github.com/pycqa/isort
+#   rev: 5.11.2
+#   hooks:
+#     - id: isort
+#       name: isort (python)
