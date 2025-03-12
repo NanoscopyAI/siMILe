@@ -39,6 +39,14 @@ This method is simpler to get started since it doesn't require `Singularity`
     ```bash
     uv run run.py -h
     ```
+  3. (Optional) you could run a quick test on sampled (Gaussian) 3D point cloud data with command:
+    ```bash
+    # generate randomly sampled data:
+    uv run scripts/gen_mock_data.py
+
+    # then, run SiMiLe-M with generated data:
+	uv run -- run.py --config CHWOS/configs/config_smoke_test.ini -A 0 -B 1 --C 0.1 --minacc 0.65 --sigma 100 --bagsize 3
+    ```
 
 <a name="build-singularity-image"></a>
 ### Using Singularity Image

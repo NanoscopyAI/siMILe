@@ -112,9 +112,22 @@ def shuffle_bags(bags):
     return bags
 
 
+def _is_valid_bags_sizes(*features, bagsize) -> bool:
+    for feature_sets in features:
+        for feature_set in feature_sets.values():
+            if (feature_set.shape[0] // bagsize) <= 0:
+                return False
+    return True
+
+
 def get_split_bags_and_labels(featuresSplit, exp_config, gave_splits=False):
     mil_labels = exp_config.mil_labels
     A_TAG, B_TAG = exp_config.A_TAG, exp_config.B_TAG
+
+    # make sure the gave bagsize is valid before generating bags for train, test
+    if not _is_valid_bags_sizes(featuresSplit["train"], featuresSplit["valid"], bagsize=exp_config.bagsize):
+        raise ValueError(f"Bag size '{exp_config.bagsize}' is too large for the current dataset.")
+
     if gave_splits:  # Used with folds
         train_bags, train_bag_labels = generate_train_test_validation_bags(
             featuresSplit["train"],
