@@ -9,8 +9,26 @@ default_minacc = 0.75
 default_sigma = 1000
 default_bagsize = 100
 
+##
+# Required arguments
 
 parser.add_argument("--config", type=str, required=True, help="(required) The config path")
+parser.add_argument(
+    "-B",
+    type=str,
+    required=True,
+    help="(required) First conditino to compare, corresponds to .ini",
+)
+parser.add_argument(
+    "-A",
+    type=str,
+    required=True,
+    help="(required) Second condition to compare, corresponds to .ini",
+)
+
+##
+# Optional arguments
+
 parser.add_argument(
     "--output",
     type=str,
@@ -29,19 +47,6 @@ parser.add_argument(
     default="csv",
     help="file extension for saving results. Default to csv",
 )  # unused
-
-parser.add_argument(
-    "-B",
-    type=str,
-    required=True,
-    help="(required) First conditino to compare, corresponds to .ini",
-)
-parser.add_argument(
-    "-A",
-    type=str,
-    required=True,
-    help="(required) Second condition to compare, corresponds to .ini",
-)
 
 parser.add_argument(
     "--bagsize",

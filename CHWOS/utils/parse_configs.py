@@ -1,20 +1,21 @@
 import os
+from argparse import Namespace
 from configparser import ConfigParser
 
 
-def get_config(config_path):
+def get_config(config_path: Namespace):
     exp_config = EXP_CONFIG(config_path)
 
     if exp_config.SYM_C:
-        exp_config.mil_labels = [-1, 1]
+        exp_config.mil_labels = [-1, 1]  # type: ignore hack
     else:
-        exp_config.mil_labels = [0, 1]
+        exp_config.mil_labels = [0, 1]  # type: ignore hack
 
     return exp_config
 
 
 class EXP_CONFIG:
-    def __init__(self, args):
+    def __init__(self, args: Namespace):
         self.args = args
 
         self.parserEXP = ConfigParser()
