@@ -10,12 +10,14 @@ This tutorial walks you through how to setup and run SiMiLe-M.
 
 <a name="requirements"></a>
 ## Requirements
-Account on a system, system resources needed, data, ...
 
 ### Input data
 
+- [ ] WIP
+
 ### Expected results/output
 
+- [ ] WIP
 
 <a name="installlation"></a>
 ## Installation
@@ -34,15 +36,15 @@ Account on a system, system resources needed, data, ...
 ## Step-by-step guide
 
 ### Step 1
-First, do ...
-```bash
-command
-```
-[optional]The output should look like
-```bash
-some result
-```
 
+- [ ] WIP: First, do ...
+  ```bash
+  command
+  ```
+  [ ] [optional]The output should look like
+  ```bash
+  some result
+  ```
 
 <a name="faq"></a>
 ## Troubleshooting
