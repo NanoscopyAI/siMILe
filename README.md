@@ -24,7 +24,7 @@ This tutorial walks you through how to setup and run SiMiLe-M.
 
 ### Local (without Singularity image)
 
-This method is simpler to get started since it doesn't require [Singularity ](https://apptainer.org/user-docs/master/quick_start.html#quick-installation-steps)
+This method is simpler to get started since it doesn't require `Singularity`
 
 - Pros: Good for quick testing with small datasets on your local machine.
 - Cons: For larger dataset when you need to run it on HPC with and by following steps to build [Using Singularity Image](#build-singularity-image)
@@ -43,12 +43,14 @@ This method is simpler to get started since it doesn't require [Singularity ](ht
 <a name="build-singularity-image"></a>
 ### Using Singularity Image
 
-- Build singularity container:
+1. Follow instruction here and build [Singularity ](https://apptainer.org/user-docs/master/quick_start.html#quick-installation-steps)
+
+2. Then build Singularity container:
   ````
   singularity build singularity/similem.sif singularity/similem.def
   ````
 
-- Test container, should get the help dialog:
+3. Finally, test container. the following command should print the help dialog:
   ```
   singularity exec singularity/similem.sif python run.py -h
   ```
