@@ -22,6 +22,27 @@ This tutorial walks you through how to setup and run SiMiLe-M.
 <a name="installlation"></a>
 ## Installation
 
+### Local (without Singularity image)
+
+This method is simpler to get started since it doesn't require [Singularity ](https://apptainer.org/user-docs/master/quick_start.html#quick-installation-steps)
+
+- Pros: Good for quick testing with small datasets on your local machine.
+- Cons: For larger dataset when you need to run it on HPC with and by following steps to build [Using Singularity Image](#build-singularity-image)
+
+- Run locally using `uv` (`uv` is `rustup`/`juliaup`/`npm` but for Python)
+  1. setup `uv` by following the official instruction here: [uv: Installation](https://docs.astral.sh/uv/getting-started/installation/)
+  2. then, after ran the following, `uv` will automatically create virtual environment and install dependencies.
+    ```bash
+    uv sync
+    ```
+  2. finally, you may able to trigger the main `SiMiLe-M`'s command line interface by:
+    ```bash
+    uv run run.py -h
+    ```
+
+<a name="build-singularity-image"></a>
+### Using Singularity Image
+
 - Build singularity container:
   ````
   singularity build singularity/similem.sif singularity/similem.def
