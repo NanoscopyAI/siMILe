@@ -13,3 +13,19 @@ dependencies = [
     "scikit-learn>=1.6.1",
     "tensorflow>=2.18.0",
 ]
+
+# install with: pip install .[dev]
+[project.optional-dependencies]
+dev = [
+	"pdbpp",
+    "pre-commit",
+    "ruff",
+    "isort",
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+# I for isort; https://docs.astral.sh/ruff/linter/#rule-selection
+extend-select = ["I", "F401"]

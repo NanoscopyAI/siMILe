@@ -161,3 +161,4 @@ cython_debug/
 
 # uv Python package manager
 uv.lock
+tmp/

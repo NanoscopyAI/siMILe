@@ -1,6 +1,9 @@
 import time
+
 from CHWOS.utils.log import get_logger
+
 logger = get_logger(__name__)
+
 
 def get_time_str_from_seconds(seconds):
     hours, remainder = divmod(seconds, 3600)
@@ -15,4 +18,5 @@ def timer_decorator(func):
         end_time = time.time()
         logger.debug(f"[TIMER] [{func.__name__}] took {get_time_str_from_seconds(end_time - start_time)}")
         return result
+
     return wrapper
