@@ -3,7 +3,6 @@ import copy
 import numpy as np  # type: ignore
 
 from CHWOS.SIMILE.prediction import get_prediction_dict
-from CHWOS.utils import metrics as metrics
 from CHWOS.utils.bags import get_split_bags_and_labels
 from CHWOS.utils.log import get_logger
 from CHWOS.utils.save import get_savefile_name, save_data_numpy

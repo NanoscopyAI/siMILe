@@ -5,7 +5,6 @@ import numpy as np  # type: ignore
 import pandas as pd
 
 from CHWOS.data_classes.base import BASE_dataset
-from CHWOS.utils import metrics as metrics
 from CHWOS.utils.log import get_logger
 
 logger = get_logger(__name__)
