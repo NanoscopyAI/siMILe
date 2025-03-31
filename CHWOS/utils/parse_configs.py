@@ -24,7 +24,7 @@ class EXP_CONFIG:
             raise ValueError(f"No configuration settings found in {args.config}, probably the wrong path")
 
         self.DATA_BASE_PATH = self.parserEXP["DATA"]["base_path"] + "/"
-        self.datatype = args.ext
+        # self.datatype = args.ext  # unused
 
         self.LIMIT_BAGS_SIZE = args.limit_bags
         self.LIMIT_BAGS = bool(self.LIMIT_BAGS_SIZE)

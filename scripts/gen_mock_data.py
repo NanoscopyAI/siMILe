@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 
@@ -25,9 +27,12 @@ def generate_3d_gaussian_data(n, mean=1.0, std=2.0, filename="normal_data_3d.csv
 
 
 if __name__ == "__main__":
+    data_dir = Path("data/smoke_test_data")
+    data_dir.mkdir(parents=True, exist_ok=True)
+
     # Generate 5 data points as an example
-    filename = generate_3d_gaussian_data(n=30, mean=1.0, std=2.0, filename="rand_data_3d_a.csv")
-    filename = generate_3d_gaussian_data(n=30, mean=1.5, std=2.0, filename="rand_data_3d_b.csv")
+    filename = generate_3d_gaussian_data(n=30, mean=1.0, std=2.0, filename=str(data_dir / "rand_data_3d_a.csv"))
+    filename = generate_3d_gaussian_data(n=30, mean=1.5, std=2.0, filename=str(data_dir / "rand_data_3d_b.csv"))
 
     # # Display the first few rows
     # print("First few rows:")

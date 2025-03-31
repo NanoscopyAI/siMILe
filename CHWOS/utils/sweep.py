@@ -66,7 +66,7 @@ class Sweep:
         if isinstance(obj, dict):
             new_obj = {}
             for key, value in obj.items():
-                if isinstance(key, np.int64):
+                if isinstance(key, np.integer):
                     key = int(key)
                 elif not isinstance(key, (str, int, float, bool, type(None))):
                     raise TypeError(f"Unsupported key type: {type(key)}")

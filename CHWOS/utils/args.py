@@ -41,12 +41,14 @@ parser.add_argument(
     default="",
     help="experiment names, used for setting the output folder name. Default to empty",
 )
-parser.add_argument(
-    "--ext",
-    type=str,
-    default="csv",
-    help="file extension for saving results. Default to csv",
-)  # unused
+# TODO: add support to export to different file formats (ie. csv, npy, ...); csv is default
+#       currently, saved as .npy binary
+# parser.add_argument(
+#     "--ext",
+#     type=str,
+#     default="csv",
+#     help="file extension for saving results. Default to csv",
+# )  # unused
 
 parser.add_argument(
     "--bagsize",
@@ -149,7 +151,7 @@ parser.add_argument("--run_saved", type=str, default="", help="Path to saved mod
 parser.add_argument("--all", action="store_true")
 
 
-# eg::: --config SIMILE/CHWOS/configs/CHWOS/CHWOS_1.ini --AE 1 --SYM_C 1 --C 0.5 --minacc 0.75 --sigma 2000 --bagsize 50 --foldindex 0
+# eg: --config SIMILE/CHWOS/configs/CHWOS/CHWOS_1.ini --AE 1 --SYM_C 1 --C 0.5 --minacc 0.75 --sigma 2000 --bagsize 50 --foldindex 0
 # mock:: --C 0.1 --minacc 0.65 --sigma 100 --bagsize 50
 def get_args():
     args = parser.parse_args()

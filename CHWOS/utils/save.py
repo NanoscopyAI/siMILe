@@ -1,6 +1,6 @@
 import os
 
-import numpy as np  # type: ignore
+import numpy as np
 
 from CHWOS.utils.log import get_logger
 from CHWOS.utils.misc import description_dict_to_str, get_date_str
@@ -17,6 +17,8 @@ def get_savefile_name(save_name_dict, include_date=True):
 
 
 def save_data_numpy(data, save_location, name, iteration=None):
+    breakpoint()
+
     save_path = os.path.join(save_location, name + ".npy")
     logger.debug(f"Saving to: {save_path}")
     np.save(save_path, data)

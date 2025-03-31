@@ -22,7 +22,7 @@ This tutorial walks you through how to setup and run SiMiLe-M.
 <a name="installlation"></a>
 ## Installation
 
-### Local (without Singularity image)
+### Local setup (without Singularity image)
 
 This method is simpler to get started since it doesn't require `Singularity`
 
@@ -32,21 +32,30 @@ This method is simpler to get started since it doesn't require `Singularity`
 - Run locally using `uv` (`uv` is `rustup`/`juliaup`/`npm` but for Python)
   1. setup `uv` by following the official instruction here: [uv: Installation](https://docs.astral.sh/uv/getting-started/installation/)
   2. then, after ran the following, `uv` will automatically create virtual environment and install dependencies.
-    ```bash
-    uv sync
-    ```
-  2. finally, you may able to trigger the main `SiMiLe-M`'s command line interface by:
-    ```bash
-    uv run run.py -h
-    ```
-  3. (Optional) you could run a quick test on sampled (Gaussian) 3D point cloud data with command:
-    ```bash
-    # generate randomly sampled data:
-    uv run scripts/gen_mock_data.py
+     ```bash
+     uv sync
+     ```
+  3. finally, you may able to trigger the main `SiMiLe-M`'s command line interface by:
+     ```bash
+     uv run run.py -h
+     ```
+  4. (Optional) you could run a quick test on sampled (Gaussian) 3D point cloud data with command:
+     ```bash
+     # generate randomly sampled data:
+     uv run scripts/gen_mock_data.py
 
-    # then, run SiMiLe-M with generated data:
-	uv run -- run.py --config CHWOS/configs/config_smoke_test.ini -A 0 -B 1 --C 0.1 --minacc 0.65 --sigma 100 --bagsize 3
-    ```
+     # then, run SiMiLe-M with generated data:
+     uv run -- run.py --config CHWOS/configs/config_smoke_test.ini -A 0 -B 1 --C 0.1 --minacc 0.65 --sigma 100 --bagsize 3
+     ```
+     - this uses sampled mock data specified by the config file [CHWOS/configs/config_smoke_test.ini](CHWOS/configs/config_smoke_test.ini)
+
+### Run locally with mock data (without Singularity image)
+
+1. You could run the mocked test with command:
+   ```bash
+   uv run -- run.py --config CHWOS/configs/config_mock_test.ini -A 1 -B 0 --C 0.1 --sigma 10 --bagsize 50 --ext csv
+   ```
+   - this uses sampled mock data specified by the config file [CHWOS/configs/config_mock_test.ini](CHWOS/configs/config_mock_test.ini)
 
 <a name="build-singularity-image"></a>
 ### Using Singularity Image
@@ -54,14 +63,14 @@ This method is simpler to get started since it doesn't require `Singularity`
 1. Follow instruction here and build [Singularity ](https://apptainer.org/user-docs/master/quick_start.html#quick-installation-steps)
 
 2. Then build Singularity container:
-  ````
-  singularity build singularity/similem.sif singularity/similem.def
-  ````
+   ````
+   singularity build singularity/similem.sif singularity/similem.def
+   ````
 
 3. Finally, test container. the following command should print the help dialog:
-  ```
-  singularity exec singularity/similem.sif python run.py -h
-  ```
+   ```
+   singularity exec singularity/similem.sif python run.py -h
+   ```
 
 <a name="steps"></a>
 ## Step-by-step guide
