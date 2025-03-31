@@ -32,7 +32,7 @@ parser.add_argument(
 parser.add_argument(
     "--output",
     type=str,
-    default="./",
+    default="./OUTPUT",
     help="output path to store results and logs. Default to current directory",
 )
 parser.add_argument(

@@ -1,6 +1,6 @@
-import os
 from argparse import Namespace
 from configparser import ConfigParser
+from pathlib import Path
 
 
 def get_config(config_path: Namespace):
@@ -71,12 +71,16 @@ class EXP_CONFIG:
         assert self.test_split >= 0, "train and valid split size too large"
 
     def setup_results_and_log(self, args):
-        parent_folder = f"SiMILe-M_{self.A_TAG}_vs_{self.B_TAG}_output_{args.expname}/"
-        parent_folder_path = os.path.join(args.output, parent_folder)
+        output_path = Path(args.output)
+        if not output_path.is_dir():
+            output_path.mkdir(parents=True, exist_ok=True)
 
-        self.RESULTS_LOCATION = os.path.join(parent_folder_path, "results/")
-        self.MODEL_LOCATION = os.path.join(parent_folder_path, "model/")
-        self.LOG_LOCATION = os.path.join(parent_folder_path, "logs/")
+        parent_folder = f"SiMILe-M_{self.A_TAG}_vs_{self.B_TAG}_output_{args.expname}/"
+        parent_folder_path = output_path / parent_folder
+
+        self.RESULTS_LOCATION = parent_folder_path / "results"
+        self.MODEL_LOCATION = parent_folder_path / "model"
+        self.LOG_LOCATION = parent_folder_path / "logs"
 
         checked_paths = [self.RESULTS_LOCATION, self.LOG_LOCATION]
         if self.save_models:
@@ -84,7 +88,7 @@ class EXP_CONFIG:
 
         for newpath in checked_paths:
             try:
-                if not os.path.exists(newpath):
-                    os.makedirs(newpath)
+                if not newpath.exists():
+                    newpath.mkdir(parents=True, exist_ok=True)
             except Exception as _:
                 pass
