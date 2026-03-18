@@ -1,0 +1,28 @@
+Bootstrap: docker
+From: ubuntu
+
+%environment
+    export DEBIAN_FRONTEND=noninteractive
+    export PATH=/miniconda3/bin:$PATH
+
+%files
+    pyproject.toml /app/pyproject.toml
+    run.pyc /app/run.pyc
+    CHWOS /app/CHWOS
+
+%post
+    export DEBIAN_FRONTEND=noninteractive
+
+    apt-get -y update
+    apt-get install -y automake build-essential bzip2 wget git default-jre unzip curl
+
+    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    bash Miniconda3-latest-Linux-x86_64.sh -b -f -p /miniconda3/
+    rm Miniconda3-latest-Linux-x86_64.sh
+    export PATH="/miniconda3/bin:$PATH"
+
+    conda install -y python=3.9 pip setuptools wheel
+
+    mkdir -p /app
+    cd /app
+    pip install .

@@ -1,0 +1,37 @@
+[project]
+name = "simile-m"
+version = "0.1.0"
+description = "Source code for SiMiLe-M algorithm."
+readme = "README.md"
+requires-python = "==3.9.*"
+dependencies = [
+    "configparser>=7.1.0",
+    "joblib>=1.4.2",
+    "numpy<2",
+    "pandas>=2.2.3",
+    "protobuf>=3.20",
+    "scikit-learn>=1.6.1",
+    "tensorflow>=2.18.0",
+]
+
+# install with: pip install .[dev]
+[project.optional-dependencies]
+dev = [
+	"pdbpp",
+    "pre-commit",
+    "ruff",
+    "isort",
+]
+
+[tool.ruff]
+line-length = 120
+include = [
+    "CHWOS/**/*.py",
+]
+exclude = [
+    "CHWOS/mil",
+]
+
+[tool.ruff.lint]
+# I for isort; https://docs.astral.sh/ruff/linter/#rule-selection
+extend-select = ["I", "F401"]
