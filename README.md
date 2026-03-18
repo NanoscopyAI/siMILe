@@ -187,12 +187,12 @@ This is useful if you have many features but only want to use a subset. If omitt
 
 Basic command:
 ```bash
-uv run run.pyc --config CONFIG/my_config.ini
+uv run run.pyc --config path/to/my_config.ini
 ```
 
 The hyperparameters default to values in your config file. Override them via CLI if needed:
 ```bash
-uv run run.pyc --config CONFIG/my_config.ini --C 0.1 --sigma 10 --bagsize 50
+uv run run.pyc --config path/to/my_config.ini --C 0.1 --sigma 10 --bagsize 50
 ```
 
 **What these parameters mean:**
@@ -307,7 +307,7 @@ Exported 6 classified CSV files (234 classified instances)
 
 | Argument   | Description                                              | Example        |
 |------------|----------------------------------------------------------|----------------|
-| `--config` | Path to your configuration file                          | `CONFIG/my.ini` |
+| `--config` | Path to your configuration file                          | `path/to/my.ini` |
 
 ### Hyperparameter Arguments (Optional, Override Config)
 
