@@ -13,7 +13,22 @@
 
 **Applications:** Biological imaging analysis, document classification, drug activity prediction, and other scenarios where labels are available at the group level but needed at the individual level.
 
-**Paper:** [Adversarial erasing enhanced multiple instance learning (siMILe): Discriminative identification of oligomeric protein structures in single molecule localization microscopy](https://www.biorxiv.org/content/10.1101/2025.09.29.679377v1)
+**Paper:** [Adversarial erasing enhanced multiple instance learning (siMILe): Discriminative identification of oligomeric protein structures in single molecule localization microscopy](https://www.cs.sfu.ca/~hamarneh/ecopy/aisy2026.pdf)
+
+```bibtex
+@ARTICLE{aisy2026,
+   AUTHOR       = {Christian Hallgrimson and Y. Lydia Li and Claire A. Shou and 
+                   Ben Cardoen and John Lim and Timothy H. Wong and Ismail M. Khater and 
+                   Ivan Robert Nabi and Ghassan Hamarneh},
+   JOURNAL      = {Advanced Intelligent Systems (AISY)},
+   TITLE        = {Adversarial erasing enhanced multiple instance learning 
+                  (siMILe): Discriminative identification of oligomeric protein 
+                  structures in single molecule localization microscopy},
+   YEAR         = {2026},   
+   PDF          = {https://www.cs.sfu.ca/~hamarneh/ecopy/aisy2026.pdf},
+   DOI          = {10.1002/aisy.202501159},
+}
+
 
 > **Note:** This repository distributes siMILe as pre-compiled Python bytecode (.pyc) for Python 3.9. Source code is not included. Python 3.9 is required.
 
