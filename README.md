@@ -1,4 +1,5 @@
 # siMILe User Guide
+<img width="600" height="1772" alt="toc-figure-simile-updated" src="https://github.com/user-attachments/assets/337a4682-1955-40c6-b0b5-0258107c9f58" />
 
 **siMILe** is a Multiple Instance Learning (MIL) algorithm that extends the MILES framework with adversarial erasing and symmetric classification for weakly supervised learning tasks.
 
