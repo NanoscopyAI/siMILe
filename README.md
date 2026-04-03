@@ -29,10 +29,9 @@
    DOI          = {10.1002/aisy.202501159},
 }
 
-
 > **Note:** This repository distributes siMILe as pre-compiled Python bytecode (.pyc) for Python 3.9. Source code is not included. Python 3.9 is required.
 
----
+***
 
 ## Table of Contents
 1. [Installation](#installation)
